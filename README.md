@@ -1,6 +1,14 @@
  # 🧩 Minimal DESK – A Beautiful Custom New Tab Extension
 Minimal DESK is a sleek, fast, and personalized Chrome extension that replaces your new tab with a focused dashboard. 
 
+### Preview - 
+
+<a href="https://ibb.co/mVDWsCYv"><img src="https://i.ibb.co/DHV2XD6G/Screenshot-2025-07-18-151541.png" alt="Screenshot-2025-07-18-151541" border="0" /></a>
+<a href="https://ibb.co/8gSwgYFN"><img src="https://i.ibb.co/qYP8YJb7/Screenshot-2025-07-18-153240.png" alt="Screenshot-2025-07-18-153240" border="0" /></a>
+<a href="https://ibb.co/84jBmZ89"><img src="https://i.ibb.co/zHS5mvfZ/Screenshot-2025-07-18-153312.png" alt="Screenshot-2025-07-18-153312" border="0" /></a>
+
+
+
 ### It includes:
 
 - 🌅 Time-based greetings
