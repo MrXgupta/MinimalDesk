@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import Greetings from "./components/Greetings.jsx";
 import Weather from "./components/Weather.jsx";
 import Goals from "./components/Goals.jsx";
+import ToDoList from "./components/ToDoList.jsx";
 
 function App() {
     const [Quote, setQuote] = useState([]);
@@ -64,6 +65,8 @@ function App() {
                     <Greetings/>
                     <p className="text-white text-center italic p-4 text-shadow-[0_35px_35px_rgb(0_0_0_/_0.25)]">{Quote}</p>
                     <Goals/>
+
+                    <ToDoList />
                 </div>
 
             </div>

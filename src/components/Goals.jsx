@@ -79,7 +79,7 @@ const Goals = () => {
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && saveGoal()}
-                                className="bg-transparent border-b-2 border-white focus:outline-0 text-white px-4 py-2 w-72 text-center"
+                                className="capitalize bg-transparent border-b-2 border-white focus:outline-0 text-white px-4 py-2 w-72 text-center"
                                 placeholder="Type your goal and press Enter"
                             />
                         </>
@@ -124,7 +124,7 @@ const Goals = () => {
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && submitSearch()}
-                        className="bg-transparent border-b-2 border-white focus:outline-0 text-white px-4 py-2 w-72 text-center"
+                        className="capitalize bg-transparent border-b-2 border-white focus:outline-0 text-white px-4 py-2 w-72 text-center"
                         placeholder="Type and press Enter"
                     />
                     <button
