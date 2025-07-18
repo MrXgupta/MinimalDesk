@@ -1,12 +1,102 @@
-# React + Vite
+# 🧩 Minimal DESK – A Beautiful Custom New Tab Extension
+Minimal DESK is a sleek, fast, and personalized Chrome extension that replaces your new tab with a focused dashboard. 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### It includes:
 
-Currently, two official plugins are available:
+- 🌅 Time-based greetings
+- ⛅ Local weather
+- ✅ To-do list
+- 🔔 Birthday reminders (optional)
+- 🔍 Utility shortcuts
+- ⚡️ Blazing-fast, minimal UI
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 Features
+1. Personalized greeting with your name
+2. Weather forecast using Geolocation + Open-Meteo API
+3. Daily to-dos with persistent storage
+4. Minimalist design using TailwindCSS
+5. Works offline after install
+6. Local data storage via chrome.storage
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
+1. Clone the Repository
+   ```angular2html
+   git clone https://github.com/MrXgupta/minimal-desk.git
+   cd minimal-desk
+    ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Install Dependencies
+    ```
+   npm install
+   ```
+   
+3. Build the Extension
+    ```
+   npm run build
+   ```
+   
+   This will output a dist/ folder with the compiled extension.
+
+4. Load into Chrome
+   - Go to chrome://extensions
+   - Enable Developer mode (top-right)
+   - Click "Load unpacked"
+   - Select the dist/ folder
+
+You're done! Open a new tab and enjoy 🧘
+
+## 🛠️ Development Mode
+Use the development server:
+```angular2html
+npm run dev
+```
+You'll still need to manually reload the extension in Chrome after changes.
+
+### ✏️ Customization
+- Modify default widgets or add new ones in /src/components
+
+- Update styles in tailwind.config.js
+
+- Background image, color, and transitions can be customized in App.jsx or your custom background component
+
+### 🌐 Tech Stack
+1. React.js
+
+2. Tailwind CSS
+
+3. Vite
+
+4. Open-Meteo API
+
+5. Chrome Extension APIs
+
+### 📦 Folder Structure
+
+````angular2html
+minimal-desk/
+├── public/
+├── src/
+│   ├── components/
+│   ├── styles/
+│   └── App.jsx
+├── manifest.json
+├── vite.config.js
+└── README.md
+````
+
+## 📝 License
+This project is open-source under the MIT License.
+
+## 💡 Contribute
+Found a bug or have a feature request?
+
+1. Fork the repo
+
+2. Create a new branch
+
+3. Submit a PR
+
+_Let’s make productivity beautiful together ✨_
+
+### ☕ Support
+If you like this project, consider giving it a ⭐️ on GitHub or buy me a coffee!
