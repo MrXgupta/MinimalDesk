@@ -102,6 +102,6 @@ _Let’s make productivity beautiful together ✨_
 
 If you find this project helpful, consider buying me a coffee:
 
-<a href="coff.ee/mrxgupta" target="_blank">
+<a href="https://coff.ee/mrxgupta" target="_blank">
   <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="45" width="170" />
 </a>
