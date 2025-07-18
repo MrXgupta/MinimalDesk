@@ -19,7 +19,7 @@ const Greetings = ({username}) => {
     return (
         <>
             <div>
-                <h1 className="text-white text-6xl w-[100vw] text-center font-bold italic ">{greeting} {username}</h1>
+                <h1 className="text-white text-6xl w-[100vw] text-center font-bold italic drop-shadow-[2px_2px_0_black]">{greeting} {username}!</h1>
             </div>
         </>
     )

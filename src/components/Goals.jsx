@@ -7,13 +7,11 @@ const Goals = () => {
     const [mode, setMode] = useState('goal'); // 'goal' or 'search'
     const [searchQuery, setSearchQuery] = useState('');
 
-    // Load from localStorage
     useEffect(() => {
         const stored = localStorage.getItem('dailyGoal');
         if (stored) setGoal(JSON.parse(stored));
     }, []);
 
-    // Save to localStorage when goal changes
     useEffect(() => {
         if (goal) {
             localStorage.setItem('dailyGoal', JSON.stringify(goal));
@@ -46,7 +44,7 @@ const Goals = () => {
     const submitSearch = () => {
         if (searchQuery.trim()) {
             const query = encodeURIComponent(searchQuery.trim());
-            window.open(`https://www.google.com/search?q=${query}`, '_blank');
+            window.open(`https://www.google.com/search?q=${query}`);
         }
     };
 

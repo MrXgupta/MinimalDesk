@@ -57,8 +57,7 @@ function App() {
             {
                 !username && <NamePromptModal onSetName={setUsername} />
             }
-
-            <div className="relative w-full h-screen text-white overflow-hidden">
+            <div className="relative w-full h-screen text-white overflow-hidden ">
 
                 {/* Background Layers */}
                 <div className="absolute inset-0 bg-gradient-to-br from-black via-slate-800/80 to-slate-900/60 z-0"></div>
@@ -74,10 +73,10 @@ function App() {
 
                     {/* Header */}
                     <div className="flex justify-between items-center p-4">
-                        <div>Hey, {username || 'Bro'}!</div>
+                        <div className="drop-shadow-[2px_2px_0_black]">Hey, {username || 'Bro'}!</div>
                         <div className="text-white flex gap-4 items-center">
                             <div className="flex flex-col text-right">
-                                <p className="text-3xl font-bold">{Time}</p>
+                                <p className="text-3xl font-bold drop-shadow-[2px_2px_0_black]">{Time}</p>
                             </div>
                             <Weather />
                         </div>
@@ -86,12 +85,12 @@ function App() {
                     {/* Main content centered */}
                     <div className="flex flex-col items-center justify-center text-center flex-1 px-4">
                         <Greetings  username={username}/>
-                        <p className="text-white italic p-4 text-shadow-[0_35px_35px_rgb(0_0_0_/_0.25)]">{Quote}</p>
+                        <p className="text-white italic p-4 drop-shadow-[2px_2px_0_black]">{Quote}</p>
                         <Goals />
                     </div>
 
                     {/* Footer pushed to bottom */}
-                    <div className="flex justify-between items-center p-4">
+                    <div className="flex justify-between items-center p-4 align-baseline">
                         <ImageUploader onBgChange={setBgImage} />
                         <ToDoList />
                     </div>
