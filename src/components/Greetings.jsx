@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 
 const Greetings = ({username}) => {
     const [greeting, setGreeting] = useState('');
+
     useEffect(() => {
         const hour = new Date().getHours();
 
@@ -17,11 +18,16 @@ const Greetings = ({username}) => {
     }, []);
 
     return (
-        <>
-            <div>
-                <h1 className="text-white text-6xl w-[100vw] text-center font-bold italic drop-shadow-[2px_2px_0_black]">{greeting} {username}!</h1>
-            </div>
-        </>
-    )
-}
+        <div className="w-full flex justify-center items-center mt-6 px-4">
+            <h1
+                className="text-4xl md:text-6xl lg:text-7xl text-center font-extrabold italic tracking-tight
+                bg-clip-text
+                drop-shadow-[3px_3px_0_rgba(0,0,0,0.4)] animate-fade-in-up"
+            >
+                {greeting}, {username}!
+            </h1>
+        </div>
+    );
+};
+
 export default Greetings;

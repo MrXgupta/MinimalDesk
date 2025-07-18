@@ -1,5 +1,5 @@
 import './App.css';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Greetings from "./components/Greetings.jsx";
 import Weather from "./components/Weather.jsx";
 import Goals from "./components/Goals.jsx";
@@ -7,13 +7,11 @@ import ToDoList from "./components/ToDoList.jsx";
 import ImageUploader from "./components/ImageUploader.jsx";
 import NamePromptModal from './components/NamePromptModal';
 
-
 function App() {
     const [Quote, setQuote] = useState([]);
     const [Time, setTime] = useState('');
     const [bgImage, setBgImage] = useState('');
     const [username, setUsername] = useState(null);
-    // /background.jpg
 
     useEffect(() => {
         chrome.storage?.local.get(['userImages'], (result) => {
@@ -24,19 +22,16 @@ function App() {
         });
     }, []);
 
-
     useEffect(() => {
         const updateTime = () => {
             const now = new Date();
-            setTime(now.toLocaleTimeString());
+            setTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
         };
 
         updateTime();
         const interval = setInterval(updateTime, 1000);
-
         return () => clearInterval(interval);
     }, []);
-
 
     const fetchQuote = async () => {
         fetch('/quotes.json')
@@ -45,8 +40,7 @@ function App() {
                 const random = Math.floor(Math.random() * data.length);
                 setQuote(data[random].text);
             });
-    }
-
+    };
 
     useEffect(() => {
         fetchQuote();
@@ -54,50 +48,55 @@ function App() {
 
     return (
         <>
-            {
-                !username && <NamePromptModal onSetName={setUsername} />
-            }
-            <div className="relative w-full h-screen text-white overflow-hidden ">
+            {!username && <NamePromptModal onSetName={setUsername} />}
+
+            <div className="relative w-full h-screen text-white overflow-hidden font-sans">
 
                 {/* Background Layers */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black via-slate-800/80 to-slate-900/60 z-0"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-black via-slate-900/70 to-black z-0"></div>
                 <div
-                    className="absolute inset-0 bg-cover bg-center blur-md scale-105 z-0"
-                    style={{
-                        backgroundImage: `url(${bgImage})`
-                    }}
+                    className="absolute inset-0 bg-cover bg-center blur-sm scale-110 brightness-[0.6] z-0 transition-all duration-500"
+                    style={{ backgroundImage: `url(${bgImage})` }}
                 ></div>
 
-                {/* Main Foreground Content */}
-                <div className="relative z-10 flex flex-col h-full">
+                {/* Main Content */}
+                <div className="relative z-10 flex flex-col h-full backdrop-blur-md">
 
                     {/* Header */}
-                    <div className="flex justify-between items-center p-4">
-                        <div className="drop-shadow-[2px_2px_0_black]">Hey, {username || 'Bro'}!</div>
-                        <div className="text-white flex gap-4 items-center">
-                            <div className="flex flex-col text-right">
-                                <p className="text-3xl font-bold drop-shadow-[2px_2px_0_black]">{Time}</p>
+                    <header className="flex justify-between items-center px-6 py-4">
+                        <h1 className="text-2xl font-bold drop-shadow-[2px_2px_0_black] tracking-wide">
+                            Hey, {username || 'Bro'}!
+                        </h1>
+
+                        <div className="flex items-center gap-4">
+                            <div className="text-right">
+                                <p className="text-4xl font-mono font-semibold drop-shadow-[2px_2px_0_black] transition duration-300">
+                                    {Time}
+                                </p>
                             </div>
                             <Weather />
                         </div>
-                    </div>
+                    </header>
 
-                    {/* Main content centered */}
-                    <div className="flex flex-col items-center justify-center text-center flex-1 px-4">
-                        <Greetings  username={username}/>
-                        <p className="text-white italic p-4 drop-shadow-[2px_2px_0_black]">{Quote}</p>
-                        <Goals />
-                    </div>
+                    {/* Center */}
+                    <main className="flex-1 flex flex-col items-center justify-center text-center px-6">
+                        <Greetings username={username} />
+                        <p className="mt-4 max-w-xl text-lg italic drop-shadow-[2px_2px_0_black]">
+                            "{Quote}"
+                        </p>
+                        <div className="mt-6 w-full max-w-xl">
+                            <Goals />
+                        </div>
+                    </main>
 
-                    {/* Footer pushed to bottom */}
-                    <div className="flex justify-between items-center p-4 align-baseline">
-                        <ImageUploader onBgChange={setBgImage} />
-                        <ToDoList />
-                    </div>
+                    {/* Footer */}
+                    <footer className="flex justify-between items-end px-6 py-2">
+                            <ImageUploader onBgChange={setBgImage} />
+                            <ToDoList />
+                    </footer>
                 </div>
             </div>
         </>
-
     );
 }
 

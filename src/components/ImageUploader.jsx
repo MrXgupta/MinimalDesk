@@ -48,7 +48,7 @@ const ImageUploader = ({ onBgChange }) => {
         <>
             <div className="p-4">
                 <button
-                    className="bg-transparent text-white px-4 py-2 rounded hover:bg-gray-300 hover:text-black transition"
+                    className="bg-transparent text-white px-4 py-2"
                     onClick={() => setShowModal(true)}
                 >
                     Images

@@ -8,7 +8,6 @@ const TodoList = () => {
     const [hovering, setHovering] = useState(false);
     const popupRef = useRef();
 
-    // Load from localStorage
     useEffect(() => {
         const stored = localStorage.getItem('todoList');
         if (stored) {
@@ -21,7 +20,6 @@ const TodoList = () => {
         }
     }, []);
 
-    // Save to localStorage
     useEffect(() => {
         localStorage.setItem('todoList', JSON.stringify(todos));
     }, [todos]);
@@ -33,8 +31,7 @@ const TodoList = () => {
     };
 
     const deleteTodo = (index) => {
-        const updated = todos.filter((_, i) => i !== index);
-        setTodos(updated);
+        setTodos(todos.filter((_, i) => i !== index));
     };
 
     const handleClickOutside = (e) => {
@@ -57,34 +54,43 @@ const TodoList = () => {
             <div
                 onMouseEnter={() => setHovering(true)}
                 onMouseLeave={() => setHovering(false)}
+                className="relative"
             >
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="bg-transparent hover:bg-gray-700 text-white p-4 rounded-full shadow-xl transition duration-300 relative"
+                    className="bg-white/10 hover:bg-white/20 text-white p-3 rounded-full backdrop-blur-md shadow-md transition duration-300"
                 >
                     <Plus size={24} />
-                    {/* Hover Card */}
-                    {hovering && todos.length > 0 && (
-                        <div className="absolute bottom-14 right-0 w-60 bg-white text-black rounded shadow-lg p-3 text-sm z-50 max-h-60 overflow-auto">
-                            <p className="font-bold mb-1 text-center text-blue-600">Your Todos</p>
-                            <ul className="space-y-1">
-                                {todos.map((todo, i) => (
-                                    <li key={i} className="truncate">• {todo.text}</li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
                 </button>
+
+                {/* Hover Preview */}
+                {hovering && todos.length > 0 && (
+                    <div className="absolute bottom-14 right-0 w-64 bg-white/90 text-black rounded-lg shadow-lg p-4 text-sm z-50 max-h-60 overflow-auto backdrop-blur-md border border-gray-300 animate-fadeIn">
+                        <p className="font-bold text-center text-blue-700 mb-2">Your Todos</p>
+                        <ul className="space-y-1 list-disc pl-5">
+                            {todos.map((todo, i) => (
+                                <li key={i} className="truncate">{todo.text}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
             </div>
 
-            {/* Center Popup Modal */}
+            {/* Modal */}
             {isOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50">
+                <div className="fixed inset-0 z-50 bg-black/60 flex justify-center items-center animate-fadeIn">
                     <div
                         ref={popupRef}
-                        className="bg-white text-black w-96 max-w-[90%] rounded-lg shadow-2xl p-6 relative"
+                        className="bg-white/10 backdrop-blur-xl border border-white/20 text-white w-full max-w-md p-6 rounded-2xl shadow-2xl mx-4 relative"
                     >
-                        <h2 className="text-2xl font-bold mb-4 text-center">Your To-Do List</h2>
+                        <button
+                            onClick={() => setIsOpen(false)}
+                            className="absolute top-2 right-3 text-white hover:text-red-400 text-xl font-bold"
+                        >
+                            &times;
+                        </button>
+
+                        <h2 className="text-2xl font-semibold text-center mb-6">📝 Your To-Do List</h2>
 
                         <div className="flex gap-2 mb-4">
                             <input
@@ -92,30 +98,33 @@ const TodoList = () => {
                                 value={input}
                                 onChange={(e) => setInput(e.target.value)}
                                 onKeyDown={(e) => e.key === 'Enter' && addTodo()}
-                                className="flex-grow border border-gray-300 rounded px-3 py-2 focus:outline-none"
-                                placeholder="Add a new task"
+                                placeholder="Add a new task..."
+                                className="flex-grow px-4 py-2 rounded-lg text-black placeholder-gray-400 shadow-inner focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                             <button
                                 onClick={addTodo}
-                                className="bg-blue-600 text-white px-3 py-2 rounded hover:bg-blue-700 transition"
+                                className="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg font-medium shadow-lg"
                             >
                                 Add
                             </button>
                         </div>
 
-                        <ul className="space-y-2 max-h-60 overflow-y-auto">
+                        <ul className="space-y-2 max-h-56 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-transparent">
                             {todos.length === 0 ? (
-                                <p className="text-gray-500 text-sm text-center">No tasks yet.</p>
+                                <p className="text-center text-sm text-gray-300 italic">
+                                    ✨ Start by adding your first task!
+                                </p>
                             ) : (
                                 todos.map((todo, index) => (
                                     <li
                                         key={index}
-                                        className="flex justify-between items-center bg-gray-100 px-3 py-2 rounded"
+                                        className="flex justify-between items-center bg-white/20 backdrop-blur rounded-lg px-4 py-2 shadow-sm text-wrap"
                                     >
-                                        <span className="truncate">{todo.text}</span>
+                                        <span className="whitespace-pre-wrap break-words w-full pr-2">{todo.text}</span>
+
                                         <button
                                             onClick={() => deleteTodo(index)}
-                                            className="text-red-500 hover:text-red-700"
+                                            className="text-red-300 hover:text-red-500 transition"
                                             title="Delete"
                                         >
                                             <Trash2 size={18} />
@@ -124,13 +133,6 @@ const TodoList = () => {
                                 ))
                             )}
                         </ul>
-
-                        <button
-                            onClick={() => setIsOpen(false)}
-                            className="absolute top-2 right-3 text-gray-500 hover:text-black text-xl"
-                        >
-                            &times;
-                        </button>
                     </div>
                 </div>
             )}
