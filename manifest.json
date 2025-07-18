@@ -2,10 +2,10 @@
   "manifest_version": 3,
   "name": "MinimalDesk",
   "version": "1.0",
+  "permissions": ["tabs", "storage"],
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["tabs"],
   "action": {
     "default_title": "Open MinimalDesk"
   }

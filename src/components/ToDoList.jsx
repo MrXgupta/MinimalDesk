@@ -55,7 +55,6 @@ const TodoList = () => {
     return (
         <>
             <div
-                className="fixed bottom-6 right-6 z-50"
                 onMouseEnter={() => setHovering(true)}
                 onMouseLeave={() => setHovering(false)}
             >
