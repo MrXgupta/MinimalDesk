@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const Greetings = () => {
+const Greetings = ({username}) => {
     const [greeting, setGreeting] = useState('');
     useEffect(() => {
         const hour = new Date().getHours();
@@ -19,7 +19,7 @@ const Greetings = () => {
     return (
         <>
             <div>
-                <h1 className="text-white text-6xl w-[100vw] text-center font-bold italic ">{greeting}</h1>
+                <h1 className="text-white text-6xl w-[100vw] text-center font-bold italic ">{greeting} {username}</h1>
             </div>
         </>
     )

@@ -5,11 +5,14 @@ import Weather from "./components/Weather.jsx";
 import Goals from "./components/Goals.jsx";
 import ToDoList from "./components/ToDoList.jsx";
 import ImageUploader from "./components/ImageUploader.jsx";
+import NamePromptModal from './components/NamePromptModal';
+
 
 function App() {
     const [Quote, setQuote] = useState([]);
     const [Time, setTime] = useState('');
     const [bgImage, setBgImage] = useState('');
+    const [username, setUsername] = useState(null);
     // /background.jpg
 
     useEffect(() => {
@@ -51,6 +54,10 @@ function App() {
 
     return (
         <>
+            {
+                !username && <NamePromptModal onSetName={setUsername} />
+            }
+
             <div className="relative w-full h-screen text-white overflow-hidden">
 
                 {/* Background Layers */}
@@ -67,7 +74,7 @@ function App() {
 
                     {/* Header */}
                     <div className="flex justify-between items-center p-4">
-                        <div>Hey BatMan!</div>
+                        <div>Hey, {username || 'Bro'}!</div>
                         <div className="text-white flex gap-4 items-center">
                             <div className="flex flex-col text-right">
                                 <p className="text-3xl font-bold">{Time}</p>
@@ -78,7 +85,7 @@ function App() {
 
                     {/* Main content centered */}
                     <div className="flex flex-col items-center justify-center text-center flex-1 px-4">
-                        <Greetings />
+                        <Greetings  username={username}/>
                         <p className="text-white italic p-4 text-shadow-[0_35px_35px_rgb(0_0_0_/_0.25)]">{Quote}</p>
                         <Goals />
                     </div>
